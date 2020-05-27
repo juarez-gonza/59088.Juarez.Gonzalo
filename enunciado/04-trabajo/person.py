@@ -1,5 +1,7 @@
 class Person:
 
+    _id_count = 0
+
     def __init__(self, name="", surname="", age=0):
         self.name = name
         self.surname = surname
@@ -18,6 +20,10 @@ class Person:
                 self._id = int(id)
         except ValueError as err:
             print("Error: " + str(err))
+
+    def id_assign(self):
+        self.id = self.__class__._id_count
+        self.__class__._id_count += 1
 
     @property
     def name(self):

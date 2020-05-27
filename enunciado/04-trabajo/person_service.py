@@ -18,12 +18,13 @@ class PersonService:
             return False
 
     # Agrega una persona en el dicionario person, definido en Repository
-    def add_one(self, person):
+    def add_one(self, person=None):
         if person is None:
             person = Person()
             person.set_campos()
-        person.id = len(self.repository.persons)
+        person.id_assign()
         self.repository.persons[person.id] = person
+        return person
 
     # Actualiza datos de una person del diccionario person
     # key clave diccionario
@@ -33,4 +34,6 @@ class PersonService:
 
     # Elimina persona segun key del dic person
     def delete_one(self, key):
+        person = self.find_one(key)
+        person.id = None
         del self.repository.persons[key]

@@ -1,5 +1,5 @@
 from person import Person
-from personService import PersonService
+from person_service import PersonService
 from repository import Repository
 
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # }
     # Update Federico
     print("===UPDATE FEDERICO===")
-    app.person_service.find_one(1).age = 30
+    app.person_service.find_one(0).age = 30
     print_dict(persons_dict)
 
     # delete person
