@@ -22,29 +22,28 @@ class App():
         print("7. Listar cast de película.")
         try:
             res = int(input("Elegir una acción: "))
-            if res == 1:
-                app.peli_service.listar_peliculas()
-            elif res == 2:
-                app.peli_service.agregar_pelicula()
-            elif res == 3:
-                titulo = input("    Ingresar titulo de la película que " +
-                               "se desea modificar: ")
-                app.peli_service.modificar_pelicula(hash(titulo))
-            elif res == 4:
-                titulo = input("    Ingresar titulo de la película que " +
-                               "se desea eliminar: ")
-                app.peli_service.eliminar_pelicula(hash(titulo))
-            elif res == 5:
-                app.peli_service.agregar_al_cast(self.actor_service)
-            elif res == 6:
-                app.peli_service.remover_del_cast(self.actor_service)
-            elif res == 7:
-                app.peli_service.listar_cast()
-            else:
-                return False
-        except KeyError:
-            print("No existe en el repositorio el dato al que se " +
-                  "intenta acceder.")
+        except EOFError:
+            raise
+        if res == 1:
+            app.peli_service.listar_peliculas()
+        elif res == 2:
+            app.peli_service.agregar_pelicula()
+        elif res == 3:
+            titulo = input("    Ingresar titulo de la película que " +
+                           "se desea modificar: ")
+            app.peli_service.modificar_pelicula(hash(titulo))
+        elif res == 4:
+            titulo = input("    Ingresar titulo de la película que " +
+                           "se desea eliminar: ")
+            app.peli_service.eliminar_pelicula(hash(titulo))
+        elif res == 5:
+            app.peli_service.agregar_al_cast(self.actor_service)
+        elif res == 6:
+            app.peli_service.remover_del_cast(self.actor_service)
+        elif res == 7:
+            app.peli_service.listar_cast()
+        else:
+            raise KeyError("No existe la opción a la que se quiere acceder.")
             return False
 
     def menu_actor(self):
@@ -56,7 +55,7 @@ class App():
         try:
             res = int(input("Elegir una acción: "))
         except EOFError:
-            raise
+            raise EOFError
         if res == 1:
             app.actor_service.listar_actores()
         elif res == 2:
@@ -79,12 +78,23 @@ class App():
         while(flag):
             print(" 1. Menu de películas")
             print(" 2. Menú de actores/actrices")
-            res = int(input("Elegir una opción: "))
+            try:
+                res = int(input("Elegir una opción: "))
+            except EOFError:
+                raise
             if res == 1:
-                flag = self.menu_pelicula()
+                try:
+                    flag = self.menu_pelicula()
+                except Exception:
+                    raise
             if res == 2:
-                flag = self.menu_actor()
+                try:
+                    flag = self.menu_actor()
+                except Exception:
+                    raise
             else:
+                msg = "No existe la opción a la que se quiere acceder."
+                raise KeyError(msg)
                 flag = False
 
 
@@ -96,4 +106,4 @@ if __name__ == "__main__":
         except Exception as err:
             import sys
             print(err)
-            sys.exit()
+            sys.exit(0)
