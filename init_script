@@ -1,3 +1,4 @@
 #!/bin/bash
-cd ${PWD} && \
+cd ${PWD}/59088.Juarez.Gonzalo && \
+pip install pipenv && \
 pipenv --python 3.8 install
