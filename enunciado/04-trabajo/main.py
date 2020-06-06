@@ -92,4 +92,8 @@ if __name__ == '__main__':
     #       '_age': 41}
     # }
     print("===FIN INICIALIZACIÓN===")
-    app.menu()
+    try:
+        app.menu()
+    except EOFError:
+        import sys
+        sys.exit()

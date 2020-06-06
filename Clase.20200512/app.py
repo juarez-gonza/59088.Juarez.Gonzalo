@@ -92,4 +92,8 @@ class App():
 if __name__ == "__main__":
     app = App()
     while True:
-        app.menu_general()
+        try:
+            app.menu_general()
+        except EOFError:
+            import sys
+            sys.exit()
