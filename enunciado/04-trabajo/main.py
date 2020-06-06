@@ -23,7 +23,10 @@ class App:
             print("3. Añadir una persona.")
             print("4. Modificar una persona.")
             print("5. Eliminar una persona.")
-            res = int(input("Elegir una acción: "))
+            try:
+                res = int(input("Elegir una acción: "))
+            except EOFError:
+                raise
             if res == 1:
                 id = int(input("Ingresar id de la persona a buscar: "))
                 person = self.person_service.find_one(id)
@@ -43,7 +46,7 @@ class App:
                                "la lista: "))
                 self.person_service.delete_one(id)
             else:
-                print("Interacción " + str(res) + " no existe")
+                raise KeyError("Interacción " + str(res) + " no existe")
                 flag = False
         print("==FIN INTERACCIÓN==")
         return flag
@@ -94,6 +97,7 @@ if __name__ == '__main__':
     print("===FIN INICIALIZACIÓN===")
     try:
         app.menu()
-    except EOFError:
+    except Exception as err:
         import sys
-        sys.exit()
+        print(err)
+        sys.exit(0)

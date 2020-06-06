@@ -55,23 +55,22 @@ class App():
         print("4. Eliminar actor/actriz.")
         try:
             res = int(input("Elegir una acción: "))
-            if res == 1:
-                app.actor_service.listar_actores()
-            elif res == 2:
-                app.actor_service.agregar_actor()
-            elif res == 3:
-                nombre = input("    Ingresar nombre del actor que " +
-                               "se desea modificar: ")
-                app.actor_service.modificar_actor(hash(nombre))
-            elif res == 4:
-                nombre = input("    Ingresar nombre del actor que " +
-                               "se desea eliminar: ")
-                app.actor_service.eliminar_actor(hash(nombre))
-            else:
-                return False
-        except KeyError:
-            print("No existe en el repositorio el dato al que se " +
-                  "intenta acceder.")
+        except EOFError:
+            raise
+        if res == 1:
+            app.actor_service.listar_actores()
+        elif res == 2:
+            app.actor_service.agregar_actor()
+        elif res == 3:
+            nombre = input("    Ingresar nombre del actor que " +
+                           "se desea modificar: ")
+            app.actor_service.modificar_actor(hash(nombre))
+        elif res == 4:
+            nombre = input("    Ingresar nombre del actor que " +
+                           "se desea eliminar: ")
+            app.actor_service.eliminar_actor(hash(nombre))
+        else:
+            raise KeyError("No existe la opción a la que se quiere acceder.")
             return False
 
     def menu_general(self):
@@ -94,6 +93,7 @@ if __name__ == "__main__":
     while True:
         try:
             app.menu_general()
-        except EOFError:
+        except Exception as err:
             import sys
+            print(err)
             sys.exit()
