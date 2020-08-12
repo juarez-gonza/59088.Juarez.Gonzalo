@@ -1,0 +1,3 @@
+class Repositorios:
+    productosList = {}
+
