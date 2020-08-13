@@ -11,7 +11,7 @@ class Producto:
 
     @precio.setter
     def precio(self, precio):
-        self._precio = precio
+        self._precio = int(precio) if precio is not None else None
 
     @property
     def descripcion(self):
@@ -19,7 +19,7 @@ class Producto:
 
     @descripcion.setter
     def descripcion(self, descripcion):
-        self._descripcion = descripcion
+        self._descripcion = str(descripcion) if descripcion is not None else None
 
     @property
     def tipo(self):
@@ -27,7 +27,7 @@ class Producto:
 
     @tipo.setter
     def tipo(self, tipo):
-        self._tipo = tipo
+        self._tipo = str(tipo) if tipo is not None else None
 
     @property
     def key(self):
@@ -35,7 +35,7 @@ class Producto:
 
     @key.setter
     def key(self, key):
-        self._key = key
+        self._key = int(key)
 
     def update(self, dictionary):
         for key, value in dictionary:

@@ -2,6 +2,16 @@ from repositorios import Repositorios
 
 
 class ProductoService:
+
+    def get_producto(self, key):
+        try:
+            if (key < len(Repositorios.productosList) and Repositorios.productosList[key] is not None):
+                producto = Repositorios.productosList[key]
+                return producto
+            raise KeyError()
+        except KeyError:
+            raise ValueError("ValueError: key not found")
+
     def add_producto(self, producto):
         try:
             key = len(Repositorios.productosList)
@@ -33,4 +43,3 @@ class ProductoService:
     def get_productosList(self):
         productosList = [producto for producto in Repositorios.productosList]
         return productosList
-

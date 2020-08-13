@@ -36,6 +36,12 @@ class TestProducto(unittest.TestCase):
         self.assertDictEqual(Repositorios.productosList[productoKey],
                              producto.__dict__)
 
+    def test_get_producto(self):
+        producto = Producto("Lenovo 450", 300000, 'computadoras')
+        productoKey = ProductoService().add_producto(producto)
+        self.assertDictEqual(Repositorios.productosList[productoKey],
+                             ProductoService().get_producto(productoKey))
+
     @parameterized.expand([
             ("lenovo t490", 6000000, 'computadoras'),
             ("samsung s10", 200000, 'celular'),
