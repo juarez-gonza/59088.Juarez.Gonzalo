@@ -2,12 +2,16 @@
 omit =
     # omit anything in a .local directory anywhere
     */.local/*
+    # omit __main__.py (which expect stdin and aren't tested by travis CI)
+    */__main__.py
     # omit everything in /usr
     /usr/*
 [report]
 omit =
     # omit anything in a .local directory anywhere
     */.local/*
+    # omit __main__.py (which expect stdin and aren't tested by travis CI)
+    */__main__.py
     # omit everything in /usr
     /usr/*
 
