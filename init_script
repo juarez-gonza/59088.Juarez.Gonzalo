@@ -5,4 +5,4 @@ then
 fi
 
 pip3 install pipenv && \
-pipenv --python 3.6 install
+pipenv --python 3.8 install

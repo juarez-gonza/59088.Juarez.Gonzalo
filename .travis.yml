@@ -6,7 +6,7 @@ install:
         - ./init_script
 
 script:
-        - coverage run enunciado/06-trabajo/test_producto.py
+        - pipenv run coverage run enunciado/06-trabajo/test_producto.py
 
 after_success:
         - coveralls
