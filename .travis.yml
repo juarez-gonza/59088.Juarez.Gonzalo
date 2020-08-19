@@ -6,7 +6,7 @@ install:
         - ./init_script
 
 script:
-        - pipenv run ./super_script_que_corre_todos_los_tests_de_la_materia.py
+        - pipenv run ./super_mega_script_que_corre_coverage_en_todos_los_tests.py
 
 after_success:
         - coveralls

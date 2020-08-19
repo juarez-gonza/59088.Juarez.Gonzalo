@@ -86,6 +86,8 @@ class TestProducto(unittest.TestCase):
         flag = True
         for i in range(1, len(ordered_arr)):
             flag = True if ordered_arr[i]["_precio"] >= ordered_arr[i-1]["_precio"] else False
+            if flag is not True:
+                break
         self.assertTrue(flag)
 
     def test_get_precio_descendente(self):
@@ -93,6 +95,8 @@ class TestProducto(unittest.TestCase):
         flag = True
         for i in range(1, len(ordered_arr)):
             flag = True if ordered_arr[i]["_precio"] <= ordered_arr[i-1]["_precio"] else False
+            if flag is not True:
+                break
         self.assertTrue(flag)
 
 
