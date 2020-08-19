@@ -46,7 +46,6 @@ class ProductoService:
 
     def get_precio_ascendente(self):
         arr = [producto for producto in self.get_productosList() if producto is not None]
-        print(arr)
         for i in range(1, len(arr)):
             insert = arr[i]
             j = i - 1
