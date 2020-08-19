@@ -1,0 +1,12 @@
+language: python
+python:
+        - "3.6"
+
+before_script:
+        - ./init_script
+
+script:
+        - coverage run enunciado/06-trabajo/test_producto.py
+
+after_success:
+        - coveralls
