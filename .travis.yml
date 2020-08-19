@@ -3,10 +3,10 @@ python:
         - "3.6"
 
 script:
-        - coverage run enunciado/06-trabajo/test_producto.py
+        - python3 enunciado/06-trabajo/test_producto.py
 
 install:
-        - pip install pipenv && pipenv --python 3.8 install
+        - pip install pipenv && pipenv --python 3.6 install
 
 after_success:
         - coveralls
