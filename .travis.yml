@@ -6,7 +6,7 @@ install:
         - ./init_script
 
 script:
-        - python3 enunciado/06-trabajo/test_producto.py
+        - coverage run enunciado/06-trabajo/test_producto.py
 
 after_success:
         - coveralls
