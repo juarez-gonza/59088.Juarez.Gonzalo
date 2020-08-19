@@ -7,3 +7,5 @@ for root, dirs, files in os.walk("."):
         if re.match("^test.*", f):
             test_path = os.path.join(root, f)
             os.system(f"python3 {test_path}")
+
+exit(0)
