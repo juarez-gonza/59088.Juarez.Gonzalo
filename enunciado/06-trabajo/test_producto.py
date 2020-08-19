@@ -82,38 +82,18 @@ class TestProducto(unittest.TestCase):
             ProductoService().delete_producto(long_list+1)
 
     def test_get_precio_ascendente(self):
-        Repositorios.productosList.clear()
-        prod_arr = [Producto("lenovo t490", 5, 'computadoras'),
-                    Producto("samsung s10", 4, 'celular'),
-                    Producto("samsung s20", 3, 'celular'),
-                    Producto("acer", 2, 'computadoras'),
-                    Producto("HP", 1, 'computadoras')
-                    ]
-        expected_arr = [prod_arr[4].__dict__, prod_arr[3].__dict__,
-                        prod_arr[2].__dict__, prod_arr[1].__dict__,
-                        prod_arr[0].__dict__]
-        for producto in prod_arr:
-            ProductoService().add_producto(producto)
-
         ordered_arr = ProductoService().get_precio_ascendente()
-        self.assertEqual(ordered_arr, expected_arr)
+        flag = True
+        for i in range(1, len(ordered_arr)):
+            flag = True if ordered_arr[i]["_precio"] >= ordered_arr[i-1]["_precio"] else False
+        self.assertTrue(flag)
 
     def test_get_precio_descendente(self):
-        Repositorios.productosList.clear()
-        prod_arr = [Producto("lenovo t490", 1, 'computadoras'),
-                    Producto("samsung s10", 2, 'celular'),
-                    Producto("samsung s20", 3, 'celular'),
-                    Producto("acer", 4, 'computadoras'),
-                    Producto("HP", 5, 'computadoras')
-                    ]
-        expected_arr = [prod_arr[4].__dict__, prod_arr[3].__dict__,
-                        prod_arr[2].__dict__, prod_arr[1].__dict__,
-                        prod_arr[0].__dict__]
-        for producto in prod_arr:
-            ProductoService().add_producto(producto)
-
         ordered_arr = ProductoService().get_precio_descendente()
-        self.assertEqual(ordered_arr, expected_arr)
+        flag = True
+        for i in range(1, len(ordered_arr)):
+            flag = True if ordered_arr[i]["_precio"] <= ordered_arr[i-1]["_precio"] else False
+        self.assertTrue(flag)
 
 
 if __name__ == '__main__':
