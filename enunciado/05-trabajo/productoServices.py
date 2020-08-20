@@ -41,5 +41,28 @@ class ProductoService:
             raise ValueError("ValueError: key not found")
 
     def get_productosList(self):
-        productosList = [producto for producto in Repositorios.productosList]
+        productosList = list(Repositorios.productosList.values())
+        productosList = [producto for producto in productosList if producto is not None]
         return productosList
+
+    def get_precio_ascendente(self):
+        arr = self.get_productosList()
+        for i in range(1, len(arr)):
+            insert = arr[i]
+            j = i - 1
+            while j >= 0 and arr[j]["_precio"] > insert["_precio"]:
+                arr[j+1] = arr[j]
+                j -= 1
+            arr[j+1] = insert
+        return arr
+
+    def get_precio_descendente(self):
+        arr = self.get_productosList()
+        for i in range(1, len(arr)):
+            insert = arr[i]
+            j = i - 1
+            while j >= 0 and arr[j]["_precio"] < insert["_precio"]:
+                arr[j+1] = arr[j]
+                j -= 1
+            arr[j+1] = insert
+        return arr

@@ -71,7 +71,6 @@ class TestProducto(unittest.TestCase):
     def test_delete_producto(self):
         ProductoService().delete_producto(0)
         self.assertEqual(Repositorios.productosList.get(0), None)
-        print(ProductoService().get_productosList())
 
     @parameterized.expand([
         ("lenovo t490", 6000000, 'computadoras')
@@ -81,6 +80,24 @@ class TestProducto(unittest.TestCase):
         long_list = len(Repositorios.productosList)
         with self.assertRaises(ValueError):
             ProductoService().delete_producto(long_list+1)
+
+    def test_get_precio_ascendente(self):
+        ordered_arr = ProductoService().get_precio_ascendente()
+        flag = True
+        for i in range(1, len(ordered_arr)):
+            flag = True if ordered_arr[i]["_precio"] >= ordered_arr[i-1]["_precio"] else False
+            if flag is not True:
+                break
+        self.assertTrue(flag)
+
+    def test_get_precio_descendente(self):
+        ordered_arr = ProductoService().get_precio_descendente()
+        flag = True
+        for i in range(1, len(ordered_arr)):
+            flag = True if ordered_arr[i]["_precio"] <= ordered_arr[i-1]["_precio"] else False
+            if flag is not True:
+                break
+        self.assertTrue(flag)
 
 
 if __name__ == '__main__':

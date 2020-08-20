@@ -1,0 +1,7 @@
+***** TP6 *******
+ - Ordenar la lista de productos del trabajo N5 teniendo en cuenta:
+   * Ordenar por precio.
+   * Tener la opcion de ordenar por ascendente y descendente. 
+   * ORDENAR SEGUN EL ALGORITMO DE INSERCION. !!!!!
+
+ - (Comentar test_delete_producto)  
