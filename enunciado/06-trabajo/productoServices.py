@@ -42,10 +42,11 @@ class ProductoService:
 
     def get_productosList(self):
         productosList = list(Repositorios.productosList.values())
+        productosList = [producto for producto in productosList if producto is not None]
         return productosList
 
     def get_precio_ascendente(self):
-        arr = [producto for producto in self.get_productosList() if producto is not None]
+        arr = self.get_productosList()
         for i in range(1, len(arr)):
             insert = arr[i]
             j = i - 1
@@ -56,8 +57,7 @@ class ProductoService:
         return arr
 
     def get_precio_descendente(self):
-        arr = [producto for producto in self.get_productosList() if producto is not None]
-        print(arr)
+        arr = self.get_productosList()
         for i in range(1, len(arr)):
             insert = arr[i]
             j = i - 1
