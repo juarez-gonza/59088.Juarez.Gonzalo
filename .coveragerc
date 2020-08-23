@@ -6,7 +6,7 @@ omit =
     */__main__.py
     # omit everything in /usr
     /usr/*
-    /home/*
+    /home/travis/*
 [report]
 omit =
     # omit anything in a .local directory anywhere
@@ -15,5 +15,5 @@ omit =
     */__main__.py
     # omit everything in /usr
     /usr/*
-    /home/*
+    /home/travis/*
 
