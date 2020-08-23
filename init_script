@@ -4,5 +4,4 @@ then
         cd ${PWD}/59088.Juarez.Gonzalo
 fi
 
-pip3 install pipenv && \
-pipenv --python 3.8 install
+pip3 install -r ./requirements.txt
