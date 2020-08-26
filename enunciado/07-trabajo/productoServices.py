@@ -74,7 +74,7 @@ class ProductoService:
         while start <= end:
             mid = (start + end) // 2
             if sorted_arr[mid]["_precio"] == precio:
-                ret = sorted_arr[mid]
+                ret = {**sorted_arr[mid]}
                 # porque el test al comparar diccionarios no espera la key
                 del ret["_key"]
                 return ret
