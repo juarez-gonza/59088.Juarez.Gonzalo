@@ -14,13 +14,20 @@ class TestProducto(unittest.TestCase):
         producto.tipo = 'computadoras'
         self.assertDictEqual(producto.__dict__, {'_descripcion': 'acer A515',
                                                  '_precio': 500000,
-                                                 '_tipo': 'computadoras'})
+                                                 '_tipo': 'computadoras',
+                                                 '_disponibilidad': 1}
+                             )
 
     def test_constructor_con_valores_iniciales(self):
         producto = Producto("Lenovo 450", 300000, 'computadoras')
         self.assertDictEqual(producto.__dict__, {'_descripcion': 'Lenovo 450',
                                                  '_precio': 300000,
-                                                 '_tipo': 'computadoras'})
+                                                 '_tipo': 'computadoras',
+                                                 '_disponibilidad': 1})
+
+    def test_precio_no_negativo(self):
+        with self.assertRaises(ValueError):
+            Producto("Lenovo 450", -300000, 'computadoras')
 
     @parameterized.expand([
             ("lenovo t490", 6000000, 'computadoras'),
@@ -42,6 +49,15 @@ class TestProducto(unittest.TestCase):
         self.assertDictEqual(Repositorios.productosList[productoKey],
                              ProductoService().get_producto(productoKey))
 
+    def test_get_disponiblesList(self):
+        disponibles = ProductoService()\
+                .get_disponiblesList(Repositorios.productosList)
+        flag = True
+        for prod in disponibles:
+            if prod["_disponibilidad"] != 1:
+                flag = False
+        self.assertTrue(flag)
+
     @parameterized.expand([
             ("lenovo t490", 6000000, 'computadoras'),
             ("samsung s10", 200000, 'celular'),
@@ -56,7 +72,8 @@ class TestProducto(unittest.TestCase):
         nonUpdated = {**Repositorios.productosList[productoKey]}
 
         ProductoService().update_producto(productoKey, {"precio": 1})
-        self.assertNotEqual(nonUpdated, Repositorios.productosList[productoKey])
+        self.assertNotEqual(nonUpdated,
+                            Repositorios.productosList[productoKey])
 
     @parameterized.expand([
         ("lenovo t490", 6000000, 'computadoras')
@@ -82,28 +99,36 @@ class TestProducto(unittest.TestCase):
             ProductoService().delete_producto(long_list+1)
 
     def test_get_precio_ascendente(self):
-        ordered_arr = ProductoService().get_precio_ascendente(Repositorios.productosList)
+        ordered_arr = ProductoService()\
+                .get_precio_ascendente(Repositorios.productosList)
         flag = True
         for i in range(1, len(ordered_arr)):
-            flag = True if ordered_arr[i]["_precio"] >= ordered_arr[i-1]["_precio"] else False
+            flag = True if\
+                    ordered_arr[i]["_precio"] >= ordered_arr[i-1]["_precio"]\
+                    else False
             if flag is not True:
                 break
         self.assertTrue(flag)
 
     def test_get_precio_descendente(self):
-        ordered_arr = ProductoService().get_precio_descendente(Repositorios.productosList)
+        ordered_arr = ProductoService()\
+                .get_precio_descendente(Repositorios.productosList)
         flag = True
         for i in range(1, len(ordered_arr)):
-            flag = True if ordered_arr[i]["_precio"] <= ordered_arr[i-1]["_precio"] else False
+            flag = True if\
+                    ordered_arr[i]["_precio"] <= ordered_arr[i-1]["_precio"]\
+                    else False
             if flag is not True:
                 break
         self.assertTrue(flag)
 
     @parameterized.expand([
         (200000, {'_descripcion':
-         'samsung s10', '_precio': 200000, '_tipo': 'celular'}),
+         'samsung s10', '_precio': 200000, '_tipo': 'celular',
+                  '_disponibilidad': 1}),
         (400000, {'_descripcion':
-         'samsung s20', '_precio': 400000, '_tipo': 'celular'}),
+         'samsung s20', '_precio': 400000, '_tipo': 'celular',
+                  '_disponibilidad': 1}),
     ])
     # Busqueda binaria
     def test_busqueda_binaria(self, precio_buscado, producto):

@@ -5,7 +5,8 @@ class ProductoService:
 
     def get_producto(self, key):
         try:
-            if (key < len(Repositorios.productosList) and Repositorios.productosList[key] is not None):
+            if (key < len(Repositorios.productosList) and
+                    Repositorios.productosList[key] is not None):
                 producto = Repositorios.productosList[key]
                 return producto
             raise KeyError()
@@ -32,7 +33,8 @@ class ProductoService:
 
     def update_producto(self, productoKey, dict_product):
         try:
-            if (productoKey < len(Repositorios.productosList) and Repositorios.productosList[productoKey] is not None):
+            if (productoKey < len(Repositorios.productosList) and
+                    Repositorios.productosList[productoKey] is not None):
                 producto = Repositorios.productosList[productoKey]
                 producto.update(dict_product)
             else:
@@ -42,8 +44,15 @@ class ProductoService:
 
     def get_productosList(self, repo_dict):
         productosList = list(repo_dict.values())
-        productosList = [producto for producto in productosList if producto is not None]
+        productosList = [producto for producto in productosList if producto is
+                         not None]
         return productosList
+
+    def get_disponiblesList(self, repo_dict):
+        productosList = self.get_productosList(repo_dict)
+        productosDisponibles = [producto for producto in productosList
+                                if producto["_disponibilidad"] == 1]
+        return productosDisponibles
 
     def get_precio_ascendente(self, repo_dict):
         arr = self.get_productosList(repo_dict)

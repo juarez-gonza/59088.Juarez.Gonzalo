@@ -8,10 +8,14 @@ class TestAdm(unittest.TestCase):
 
     def setUp(self):
         self.adm = Administration()
-    #     self.adm.add_employee(Employee("Gonzalo", 19, "Juarez", 666, 20000).get_employee())
-    #     self.adm.add_employee(Employee("X", 22, "Y", 666, 35000).get_employee())
-    # opción útil para inicializar previo a cada test en lugar de en parameterized.expand
-    # (parameterize.expand crea cuantas copias de la función sean necesarias para los distintos parámetros)
+    #     self.adm.add_employee(Employee("Gonzalo", 19, "Juarez", 666, 20000)\
+    #           .get_employee())
+    #     self.adm.add_employee(Employee("X", 22, "Y", 666, 35000)\
+    #           .get_employee())
+    # opción útil para inicializar previo a cada test
+    # en lugar de en parameterized.expand
+    # (parameterize.expand crea cuantas copias de la función
+    # sean necesarias para los distintos parámetros)
 
     def tearDown(self):
         self.adm = None

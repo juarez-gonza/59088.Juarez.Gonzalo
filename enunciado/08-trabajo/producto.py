@@ -1,6 +1,7 @@
 class Producto:
 
-    def __init__(self, descripcion=None, precio=0, tipo=None, disponibilidad=1):
+    def __init__(self, descripcion=None, precio=0, tipo=None,
+                 disponibilidad=1):
         self.precio = precio
         self.descripcion = descripcion
         self.tipo = tipo
@@ -19,14 +20,14 @@ class Producto:
         except ValueError:
             raise
 
-
     @property
     def descripcion(self):
         return self._descripcion
 
     @descripcion.setter
     def descripcion(self, descripcion):
-        self._descripcion = str(descripcion) if descripcion is not None else None
+        self._descripcion = str(descripcion) if descripcion is not None \
+                else None
 
     @property
     def tipo(self):
@@ -57,5 +58,3 @@ class Producto:
     @disponibilidad.setter
     def disponibilidad(self, disponibilidad):
         self._disponibilidad = disponibilidad
-
-

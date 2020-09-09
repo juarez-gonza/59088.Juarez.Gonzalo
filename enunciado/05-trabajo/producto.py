@@ -1,9 +1,11 @@
 class Producto:
 
-    def __init__(self, descripcion=None, precio=None, tipo=None):
+    def __init__(self, descripcion=None, precio=0, tipo=None,
+                 disponibilidad=1):
         self.precio = precio
         self.descripcion = descripcion
         self.tipo = tipo
+        self.disponibilidad = disponibilidad
 
     @property
     def precio(self):
@@ -11,7 +13,12 @@ class Producto:
 
     @precio.setter
     def precio(self, precio):
-        self._precio = int(precio) if precio is not None else None
+        try:
+            if precio is None or precio < 0:
+                raise ValueError("Valor inválido, no se puede asignar")
+            self._precio = int(precio)
+        except ValueError:
+            raise
 
     @property
     def descripcion(self):
@@ -19,7 +26,8 @@ class Producto:
 
     @descripcion.setter
     def descripcion(self, descripcion):
-        self._descripcion = str(descripcion) if descripcion is not None else None
+        self._descripcion = str(descripcion) if descripcion is not None \
+                else None
 
     @property
     def tipo(self):
@@ -42,3 +50,11 @@ class Producto:
             if key[0] != "_":
                 key = "_{0}".format(key)
             self[key] = value
+
+    @property
+    def disponibilidad(self):
+        return self._disponibilidad
+
+    @disponibilidad.setter
+    def disponibilidad(self, disponibilidad):
+        self._disponibilidad = disponibilidad

@@ -24,7 +24,8 @@ class App:
                 elif eleccion == 4:
                     flag = False
                 else:
-                    raise ValueError("valor ingresado no válido. Volver a intentar")
+                    msg = "valor ingresado no válido. Volver a intentar"
+                    raise ValueError(msg)
             except ValueError as e:
                 print(e)
             print("==============================================")
@@ -48,7 +49,7 @@ class App:
         actualProduct = ProductoService().get_producto(productKey)
         print("Estado actual del producto: ")
         print(actualProduct)
-        print("Campos a actualizar (dejar en blanco los que no se quieran cambiar)")
+        print("Campos a actualizar (dejar en blanco los que no cambien)")
         try:
             producto = Producto().__dict__
             for key in producto:
