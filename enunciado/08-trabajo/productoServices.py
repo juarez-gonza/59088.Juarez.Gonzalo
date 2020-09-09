@@ -45,6 +45,11 @@ class ProductoService:
         productosList = [producto for producto in productosList if producto is not None]
         return productosList
 
+    def get_disponiblesList(self, repo_dict):
+        productosList = self.get_productosList(repo_dict)
+        productosDisponibles = [ producto for producto in productosList if producto["_disponibilidad"]==1 ]
+        return productosDisponibles
+
     def get_precio_ascendente(self, repo_dict):
         arr = self.get_productosList(repo_dict)
         for i in range(1, len(arr)):
