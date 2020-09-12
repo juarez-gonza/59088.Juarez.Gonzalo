@@ -14,7 +14,7 @@ class PuntoMejorado(Punto2D):
         if self.x > 0 and self.y > 0:
             cuadrante = "Cuadrante 1"
         elif self.x < 0 and self.y > 0:
-            cuadrante = "cuadrante 2"
+            cuadrante = "Cuadrante 2"
         elif self.x < 0 and self.y < 0:
             cuadrante = "Cuadrante 3"
         elif self.x > 0 and self.y < 0:
