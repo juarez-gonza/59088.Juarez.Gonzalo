@@ -20,8 +20,8 @@ class PuntoMejorado(Punto2D):
         elif self.x > 0 and self.y < 0:
             cuadrante = "Cuadrante 4"
 
-        print(f"El punto de coordenadas ({self.x}, {self.y} ) pertenece al\
-                cuadrante {cuadrante}.")
+        # print(f"El punto de coordenadas ({self.x}, {self.y} ) pertenece al\
+        #        cuadrante {cuadrante}.")
 
         return int(cuadrante.split(" ")[1])
 
