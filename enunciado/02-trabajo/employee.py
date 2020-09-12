@@ -11,7 +11,7 @@ class Person:
     # return ["Claudio", 32]
 
     def get_person(self):
-        print(self.__dict__)
+        # print(self.__dict__)
         return self.__dict__
 
 

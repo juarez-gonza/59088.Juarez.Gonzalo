@@ -32,9 +32,8 @@ class TestPersonService(unittest.TestCase):
         self.person_service.delete_one(added.id)
 
         # para mostrar que la key ya no existe en el repositorio
-        with self.assertRaises(KeyError) as error:
+        with self.assertRaises(KeyError):
             self.person_service.repository.persons[added.id]
-        self.assertEqual(error.expected, KeyError)
 
     def test_find_one(self):
         # caso verdadero, en setUp el id 1 corresponde a claudio

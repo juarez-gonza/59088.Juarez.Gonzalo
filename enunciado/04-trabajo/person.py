@@ -18,8 +18,9 @@ class Person:
                 raise ValueError("Los campos no pueden tener valores nulos.")
             else:
                 self._id = int(id)
-        except ValueError as err:
-            print("Error: " + str(err))
+        except ValueError:
+            raise
+            # print("Error: " + str(err))
 
     def id_assign(self):
         self.id = self.__class__._id_count
@@ -36,8 +37,8 @@ class Person:
                 raise ValueError("Los campos no pueden tener valores nulos.")
             else:
                 self._name = name.upper()
-        except ValueError as err:
-            print("Error: " + str(err))
+        except ValueError:
+            raise
 
     @property
     def surname(self):
@@ -50,8 +51,8 @@ class Person:
                 raise ValueError("Los campos no pueden tener valores nulos.")
             else:
                 self._surname = surname.upper()
-        except ValueError as err:
-            print("Error: " + str(err))
+        except ValueError:
+            raise
 
     @property
     def age(self):
@@ -64,8 +65,8 @@ class Person:
                 raise ValueError("Los campos no pueden tener valores nulos.")
             else:
                 self._age = int(age)
-        except ValueError as err:
-            print("Error: " + str(err))
+        except ValueError:
+            raise
 
     def set_campos(self):
         self.name = input("Ingresar nombre: ")
