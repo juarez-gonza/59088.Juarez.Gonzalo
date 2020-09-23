@@ -138,6 +138,11 @@ class TestProducto(unittest.TestCase):
     def test_busqueda_binaria(self, precio_buscado, producto):
         busqueda = ProductoService().\
             busqueda_binaria(Repositorios.productosList, precio_buscado)
+        # devuelve un objeto, para hacer la comparación con el diccionario
+        # en parameterized hay que formatearlo. el diccionario en
+        # parameterized no espera un atributo key
+        busqueda = {**busqueda.__dict__}
+        del busqueda["_key"]
         self.assertDictEqual(busqueda, producto)
 
 

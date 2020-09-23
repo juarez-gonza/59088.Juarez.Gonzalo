@@ -89,10 +89,7 @@ class ProductoService:
             mid = (start + end) // 2
             precio_mid = getattr(sorted_arr[mid], "precio")
             if precio_mid == precio:
-                ret = {**sorted_arr[mid].__dict__}
-                # porque el test al comparar diccionarios no espera la key
-                del ret["_key"]
-                return ret
+                return sorted_arr[mid]
             elif precio_mid > precio:
                 end = mid - 1
             else:
