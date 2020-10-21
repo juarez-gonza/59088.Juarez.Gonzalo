@@ -8,21 +8,15 @@ class Ahorcado:
         self.services_partidas = ServicesPartidas()
 
     def un_jugador(self):
-        try:
-            partida = self.crear_partida()
-            self.adivinar_letra(partida)
-        except StopIteration:
-            # para lidiar con el primer test de test_ahorcado.py
-            return True
-        except SystemExit:
-            # para lidiar con salir del juego de cualquier toma de input
-            pass
-        return True
+        return self.juego(1)
 
     def dos_jugadores(self):
+        return self.juego(2)
+
+    def juego(self, nro_jugadores):
         try:
-            for i in range(2):
-                partida = self.crear_partida()
+            for i in range(nro_jugadores):
+                partida = self.crear_partida(nro_jugadores)
                 self.adivinar_letra(partida)
         except StopIteration:
             # para lidiar con el primer test de test_ahorcado.py
@@ -46,14 +40,14 @@ class Ahorcado:
                 break
         return True
 
-    def crear_partida(self):
+    def crear_partida(self, nro_jugadores):
         nombre_jugador =\
             tomar_input("Ingresar nombre del jugador: ")
         dificultad =\
             tomar_input("Ingresar dificultad de la partida: ", False)
         palabra = ""
         tipo_palabra = ""
-        if inspect.stack()[1][3] == "dos_jugadores":
+        if nro_jugadores > 1:
             palabra =\
                 tomar_input("Ingresar la palabra a adivinar: ")
             tipo_palabra =\
