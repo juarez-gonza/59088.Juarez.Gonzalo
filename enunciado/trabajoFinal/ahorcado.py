@@ -1,4 +1,3 @@
-import inspect
 from servicesPartidas import ServicesPartidas
 from aux import tomar_input
 
@@ -19,7 +18,7 @@ class Ahorcado:
                 partida = self.crear_partida(nro_jugadores)
                 self.adivinar_letra(partida)
         except StopIteration:
-            # para lidiar con el primer test de test_ahorcado.py
+            # para lidiar con algunos tests que largan este error
             return True
         except SystemExit:
             # para lidiar con salir del juego de cualquier toma de input

@@ -11,9 +11,19 @@ class Repo_Palabras:
             }
         ]
 
+    inicializado = False
+
     def __init__(self):
         pass
 
     @classmethod
     def get_palabra(repo_class, indice):
+        if not repo_class.inicializado:
+            with open("word_list.txt", "r") as f:
+                while line := f.readline():
+                    repo_class.repo.append({
+                        "palabra": line,
+                        "tipo_palabra": "random"
+                        })
+            repo_class.inicializado = True
         return repo_class.repo[indice]
